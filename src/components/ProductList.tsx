@@ -12,22 +12,20 @@ const ProductList = () => {
   const dispatch = useDispatch();
 
   const fetchProductData = async () => {
-    const localData = localStorage.getItem("products");
-    if (localData) {
-      dispatch(setProducts(JSON.parse(localData)));
-    } else {
-      const res = await fetch(API_ENDPOINT);
-      const data = await res.json();
-      localStorage.setItem("products", JSON.stringify(data));
-      dispatch(setProducts(data));
-    }
+    const res = await fetch(API_ENDPOINT);
+    const data = await res.json();
+    dispatch(setProducts(data));
   };
 
   useEffect(() => {
     fetchProductData();
   }, []);
 
-  return products.map((product) => ProductComponent(product));
+  return (
+    <div className="w-auto h-screen grid grid-cols-4 gap-3 ">
+      {products.map((product) => ProductComponent(product))}
+    </div>
+  );
 };
 
 export default ProductList;
