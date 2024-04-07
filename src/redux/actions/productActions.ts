@@ -1,3 +1,4 @@
+import { useDispatch } from "react-redux";
 import { Product } from "../types";
 import actionTypes from "../types/actionTypes";
 
@@ -13,4 +14,18 @@ const selectProduct = (product: Product | any) => {
     payload: product,
   };
 };
-export { setProducts, selectProduct };
+const API_ENDPOINT = "https://fakestoreapi.com/products";
+
+const fetchProducts = () => async (dispatch) => {
+  try {
+    const response = await fetch(API_ENDPOINT);
+    const data = await response.json();
+
+    dispatch({ type: actionTypes.FETCH_PRODUCTS, payload: data });
+  } catch (error) {
+    // Handle any errors here
+    console.error("Error fetching products:", error);
+  }
+};
+
+export { setProducts, selectProduct, fetchProducts };

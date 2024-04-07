@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { StateType } from "../redux/types/stateTypes";
 
-import { setProducts } from "../redux/actions/productActions";
+import { fetchProducts } from "../redux/actions/productActions";
 import ProductComponent from "./ProductComponent";
 const API_ENDPOINT = "https://fakestoreapi.com/products";
 const ProductList = () => {
@@ -11,14 +11,14 @@ const ProductList = () => {
   );
   const dispatch = useDispatch();
 
-  const fetchProductData = async () => {
-    const res = await fetch(API_ENDPOINT);
-    const data = await res.json();
-    dispatch(setProducts(data));
-  };
+  //   const fetchProductData = async () => {
+  //     const res = await fetch(API_ENDPOINT);
+  //     const data = await res.json();
+  //     dispatch(setProducts(data));
+  //   };
 
   useEffect(() => {
-    fetchProductData();
+    dispatch(fetchProducts());
   }, []);
 
   return (
