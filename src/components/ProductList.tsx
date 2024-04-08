@@ -4,19 +4,13 @@ import { StateType } from "../redux/types/stateTypes";
 
 import { fetchProducts } from "../redux/actions/productActions";
 import ProductComponent from "./ProductComponent";
-const API_ENDPOINT = "https://fakestoreapi.com/products";
+import { ThunkDispatch } from "redux-thunk";
+import { Action } from "redux";
 const ProductList = () => {
   const products = useSelector(
     (state: StateType) => state.allProducts.products
   );
-  const dispatch = useDispatch();
-
-  //   const fetchProductData = async () => {
-  //     const res = await fetch(API_ENDPOINT);
-  //     const data = await res.json();
-  //     dispatch(setProducts(data));
-  //   };
-
+  const dispatch: ThunkDispatch<StateType, {}, Action> = useDispatch();
   useEffect(() => {
     dispatch(fetchProducts());
   }, []);

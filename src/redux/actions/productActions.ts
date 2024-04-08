@@ -1,6 +1,6 @@
-import { useDispatch } from "react-redux";
 import { Product } from "../types";
 import actionTypes from "../types/actionTypes";
+import { Dispatch } from "redux";
 
 const setProducts = (products: Product[]) => {
   return {
@@ -16,7 +16,7 @@ const selectProduct = (product: Product | any) => {
 };
 const API_ENDPOINT = "https://fakestoreapi.com/products";
 
-const fetchProducts = () => async (dispatch) => {
+const fetchProducts = () => async (dispatch: Dispatch) => {
   try {
     const response = await fetch(API_ENDPOINT);
     const data = await response.json();
