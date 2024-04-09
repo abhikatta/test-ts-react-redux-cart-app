@@ -22,10 +22,18 @@ const ProductDetail = () => {
 
   return (
     product && (
-      <div>
-        <img src={product.image} alt={product.title} width={200}></img>
-        <p>{product.title}</p>
-        <p>${product.price}</p>
+      <div className="h-screen w-screen flex flex-col md:flex-row items-center justify-center px-4 py-2 gap-3">
+        <img src={product.image} alt={product.title} width={300}></img>
+        <div className="flex max-w-[40%] flex-col justify-center gap-3">
+          <p className="text-2xl">{product.title}</p>
+          <p className="">{product.description}</p>
+          <p className="text-md">
+            Rating: {product.rating.rate} {"("}
+            {product.rating.count}
+            {")"}
+          </p>
+          <p className="text-3xl">Price: ${product.price}</p>
+        </div>
       </div>
     )
   );

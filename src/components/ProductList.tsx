@@ -18,7 +18,7 @@ const ProductList = () => {
 
   return (
     products && (
-      <div className="w-auto h-screen grid grid-cols-4 gap-3 ">
+      <div className="w-auto mx-3 my-3  h-auto sm:grid sm:grid-cols-2 flex flex-col md:grid md:grid-cols-4 gap-3 ">
         {products.map((product) => (
           <ProductComponent key={product.id} product={product} />
         ))}

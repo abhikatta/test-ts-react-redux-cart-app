@@ -10,7 +10,7 @@ const App = () => {
   const [showCart, setShowCart] = useState(false);
 
   return (
-    <div className="w-auto h-screen flex flex-col">
+    <div className="w-auto h-full min-h-screen flex flex-col bg-slate-300">
       <Router>
         <Header />
         <Routes>
