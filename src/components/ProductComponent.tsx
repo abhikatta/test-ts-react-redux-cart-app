@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { Product } from "../redux/types";
 import { useDispatch } from "react-redux";
 import { addProductToCart } from "../redux/actions/productActions";
-import actionTypes from "../redux/types/actionTypes";
 
 const ProductComponent = ({ product }: { product: Product }) => {
   const dispatch = useDispatch();
@@ -20,7 +19,7 @@ const ProductComponent = ({ product }: { product: Product }) => {
         </div>
       </Link>
       <button
-        className=" bg-slate-200 hover:bg-slate-700 hover:text-white duration-300 rounded-md my-2 px-4 py-2"
+        className="bg-slate-200 hover:bg-slate-700 hover:text-white duration-300 rounded-md my-2 px-4 py-2"
         onClick={() => {
           dispatch(addProductToCart(product));
         }}>

@@ -57,6 +57,23 @@ const cartReducer = (state = cartProductsInitialState, action: Action) => {
         };
       }
 
+    case actionTypes.REMOVE_FROM_CART:
+      const productIndexToRemove = state.products.findIndex(
+        (product) => product.id === action.payload.id
+      );
+      if (productIndexToRemove !== -1) {
+        const updatedProducts = [...state.products];
+        if (updatedProducts[productIndexToRemove].quantity > 1) {
+          updatedProducts[productIndexToRemove] = {
+            ...updatedProducts[productIndexToRemove],
+            quantity: updatedProducts[productIndexToRemove].quantity - 1,
+          };
+        } else {
+          updatedProducts.splice(productIndexToRemove, 1);
+        }
+        return { products: updatedProducts };
+      }
+      return state;
     default:
       return state;
   }
