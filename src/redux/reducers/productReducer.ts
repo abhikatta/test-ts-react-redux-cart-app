@@ -39,11 +39,23 @@ const selectProductReducer = (
 const cartReducer = (state = cartProductsInitialState, action: Action) => {
   switch (action.type) {
     case actionTypes.ADD_TO_CART:
-      const updatedProducts = [...state.products];
+      console.log(state.products);
+
       const existingProductIndex = state.products.findIndex(
         (product) => product.id === action.payload.id
       );
-      return state;
+      if (existingProductIndex !== -1) {
+        const updatedProducts = [...state.products];
+        updatedProducts[existingProductIndex] = {
+          ...updatedProducts[existingProductIndex],
+          quantity: updatedProducts[existingProductIndex].quantity + 1,
+        };
+        return { products: updatedProducts };
+      } else {
+        return {
+          products: [...state.products, { ...action.payload, quantity: 1 }],
+        };
+      }
 
     default:
       return state;

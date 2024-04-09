@@ -11,14 +11,19 @@ const ProductList = () => {
     (state: StateType) => state.allProducts.products
   );
   const dispatch: ThunkDispatch<StateType, {}, Action> = useDispatch();
+
   useEffect(() => {
     dispatch(fetchProducts());
   }, []);
 
   return (
-    <div className="w-auto h-screen grid grid-cols-4 gap-3 ">
-      {products.map((product) => ProductComponent(product))}
-    </div>
+    products && (
+      <div className="w-auto h-screen grid grid-cols-4 gap-3 ">
+        {products.map((product) => (
+          <ProductComponent key={product.id} product={product} />
+        ))}
+      </div>
+    )
   );
 };
 
