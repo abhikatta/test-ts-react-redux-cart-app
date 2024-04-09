@@ -2,10 +2,10 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { StateType } from "../redux/types/stateTypes";
 
-import { fetchProducts } from "../redux/actions/productActions";
 import ProductComponent from "./ProductComponent";
 import { ThunkDispatch } from "redux-thunk";
 import { Action } from "redux";
+import { fetchProducts } from "../redux/reducers/productReducer";
 const ProductList = () => {
   const products = useSelector(
     (state: StateType) => state.allProducts.products

@@ -1,6 +1,5 @@
 import { Product } from "../types";
 import actionTypes from "../types/actionTypes";
-import { Dispatch } from "redux";
 
 const setProducts = (products: Product[]) => {
   return {
@@ -8,24 +7,23 @@ const setProducts = (products: Product[]) => {
     payload: products,
   };
 };
-const selectProduct = (product: Product | any) => {
+const selectProduct = (product: Product) => {
   return {
     type: actionTypes.SELECT_PRODUCT,
     payload: product,
   };
 };
-const API_ENDPOINT = "https://fakestoreapi.com/products";
 
-const fetchProducts = () => async (dispatch: Dispatch) => {
-  try {
-    const response = await fetch(API_ENDPOINT);
-    const data = await response.json();
-
-    dispatch({ type: actionTypes.FETCH_PRODUCTS, payload: data });
-  } catch (error) {
-    // Handle any errors here
-    console.error("Error fetching products:", error);
-  }
+const addProductToCart = (cartProduct: Product) => {
+  return {
+    type: actionTypes.ADD_TO_CART,
+    payload: cartProduct,
+  };
 };
-
-export { setProducts, selectProduct, fetchProducts };
+const removeProductFromCart = (carProduct: Product) => {
+  return {
+    type: actionTypes.REMOVE_FROM_CART,
+    payload: carProduct,
+  };
+};
+export { setProducts, selectProduct, addProductToCart, removeProductFromCart };

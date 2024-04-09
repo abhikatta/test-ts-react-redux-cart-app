@@ -10,10 +10,12 @@ interface Product {
     count: number;
   };
 }
-
+interface CartProduct extends Product {
+  quantity: number;
+}
 interface Action {
   type: string;
-  payload: Product | Product["id"];
+  payload: Product;
 }
 
-export type { Action, Product };
+export type { Action, Product, CartProduct };
